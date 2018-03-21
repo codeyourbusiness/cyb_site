@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-blogpage{% endblock %}
+
+{% block header-text %}
+    {% image page.title_image max-1000x500 as bgimg %}
+    <div class="hero-image-box" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url({{ bgimg.url }});">
+        <div class="text-title">
+            <h1>{{ page.title }}</h1>
+            <p>{{page.author}},{{ page.date }}</p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <section class="blog-page">
+
+            <div class="row blog-content">
+
+                <div class="col-12">
+
+                    {{ page.body|richtext }}
+
+                </div>
+
+            </div>
+
+            <div class="row blog-control">
+                <div class="col-12">
+                    <a href="{{ page.get_parent.url }}" class="btn-blog"><i class="ion-ios-keypad btn-icon"></i>Show All</a>
+                    {% if page.get_next_by_date %}
+                        <a href="{{ page.get_next_by_date.url }}" class="btn-blog">Next <i class="ion-android-arrow-forward btn-icon"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+{% endblock %}
