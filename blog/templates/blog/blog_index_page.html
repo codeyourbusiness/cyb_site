@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% block body_class %}template-blogindexpage{% endblock %}
+{% block header-text %}
+
+    <div class="hero-text-box">
+        <h1>Find blueprint of <br> technology updates here</h1>
+        <h3>You will get to know about new technologies <br>and great articles from professionals.</h3>
+     </div>
+
+{% endblock %}
+{% block content %}
+    <!--<h1>{{ page.title }}</h1>-->
+
+    <section class="blog-index">
+
+        {% for post in page.get_children  %}
+
+            <div class="row blog-box">
+
+                  <div class="col">
+                      <h2>{{ post.title }}</h2>
+                      <span class="blog-meta">{{post.specific.author}}, {{post.specific.date}}</span>
+                      <div class="blog-desc">
+                        {% image post.specific.title_image max-1000x500 as bgimg %}
+                        <img class="blog-img" src="{{bgimg.url}}">
+                        <p class="blog-description">{{ post.specific.intro }}</p>
+                      </div>
+                      <a class="btn-blog" href="{% pageurl post%}">Read Now</a>
+
+                  </div>
+
+              </div>
+
+
+        {% endfor %}
+
+
+    </section>
+    <!--<div class="intro"> {{ page.intro|richtext }}</div>-->
+    <!--{% for post in page.get_children  %}-->
+        <!--<h2><a href="{% pageurl post %}">{{ post.title }}</a></h2>-->
+        <!--{{ post.specific.intro }}-->
+        <!--{{ post.specific.body|richtext }}-->
+
+    <!--{% endfor %}-->
+
+{% endblock %}
