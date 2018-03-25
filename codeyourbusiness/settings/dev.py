@@ -7,6 +7,9 @@ DEBUG = True
 SECRET_KEY = '2v2h^ose%h*)n!*$92(eswxg21*5sbl^iozw6#yvqw36j6-)-@'
 
 
+
+ALLOWED_HOSTS = ['codeyourbusiness.pythonanywhere.com', ]
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
